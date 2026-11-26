@@ -86,39 +86,6 @@
       background: transparent;
     }
 
-    /* ── вертикальный «отрывной» пунктир по всей странице ── */
-    .page::before {
-      content: "";
-      position: absolute;
-      left: 8px;
-      top: 0;
-      bottom: 0;
-      width: 0;
-      border-left: 2px dashed rgba(22, 50, 63, 0.42);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* маленькие «проколы» вдоль пунктира */
-    .page::after {
-      content: "";
-      position: absolute;
-      left: 6px;
-      top: 0;
-      bottom: 0;
-      width: 6px;
-      pointer-events: none;
-      z-index: -1;
-      background-image: radial-gradient(
-        circle 2.5px at 50% 50%,
-        rgba(22, 50, 63, 0.55) 0%,
-        rgba(22, 50, 63, 0.55) 75%,
-        transparent 100%
-      );
-      background-size: 6px 220px;
-      background-repeat: repeat-y;
-    }
-
     .title {
       margin: 0;
       color: #1f4356;
@@ -590,15 +557,43 @@
       background: rgba(255, 255, 255, .4);
     }
 
-    /* ── блок «Контакты»: текст слева, увеличенное фото справа ── */
+    /* ── блок «Контакты»: горизонтальный отрывной лист + увеличенное фото ── */
     .contacts {
+      position: relative;
       width: min(100%, 1100px);
-      margin: 48px auto 0;
+      margin: 64px auto 0;
+      padding: 42px 12px 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: clamp(20px, 3.5vw, 46px);
       animation: fadeUp 1.1s cubic-bezier(.22, .8, .3, 1) 1.8s both;
+    }
+
+    /* горизонтальный пунктир «отрыва» во всю ширину листа */
+    .contacts::before {
+      content: "";
+      position: absolute;
+      top: 14px;
+      left: 0;
+      right: 0;
+      height: 0;
+      border-top: 2px dashed rgba(22, 50, 63, 0.55);
+      pointer-events: none;
+    }
+
+    /* круглые «проколы» по краям пунктира — как у отрывного билета */
+    .contacts::after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: -6px;
+      right: -6px;
+      height: 14px;
+      pointer-events: none;
+      background:
+        radial-gradient(circle 4px at 0 50%, rgba(22, 50, 63, 0.55) 98%, transparent 100%) no-repeat left center / 12px 12px,
+        radial-gradient(circle 4px at 100% 50%, rgba(22, 50, 63, 0.55) 98%, transparent 100%) no-repeat right center / 12px 12px;
     }
 
     .contacts-info {
@@ -715,16 +710,15 @@
       .rsvp-check input[type="checkbox"] { width: 16px; height: 16px; }
       .rsvp-submit { padding: 9px 28px; }
 
-      /* контакты на мобильных: фото заметно крупнее, но текст читаем */
+      /* контакты: пунктир во всю ширину + фото крупнее */
       .contacts {
-        margin-top: 36px;
+        margin-top: 52px;
+        padding: 36px 4px 4px;
         gap: 14px;
       }
+      .contacts::before { top: 12px; }
+      .contacts::after  { top: 6px; }
       .contacts-photo { width: clamp(170px, 46vw, 280px); }
-
-      /* пунктир на мобильных чуть ближе к краю */
-      .page::before { left: 5px; }
-      .page::after  { left: 3px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
