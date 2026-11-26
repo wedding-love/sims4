@@ -3,43 +3,143 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#a8d8ea">
   <title>Артём &amp; Ольга — Wedding Day</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Parisienne&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; }
-    html, body { margin: 0; min-height: 100%; background: #fff; }
-    body { color: #242424; font-family: "Cormorant Garamond", Georgia, serif; }
-    .page {
-      width: min(100%, 1000px); min-height: 100vh; margin: 0 auto;
-      padding: 38px 20px 24px; display: flex; flex-direction: column;
-      align-items: center; background: #fff;
+
+    html {
+      background: #8ecae6;
     }
-    .title {
-      margin: 0; color: #252525; font-family: "Parisienne", "Brush Script MT", cursive;
-      font-size: clamp(48px, 8vw, 76px); font-weight: 400;
-      line-height: 1.15; text-align: center;
-    }
-    .names {
-      margin: 7px 0 0; color: #202020;
+
+    body {
+      margin: 0;
+      min-height: 100%;
+      color: #16323f;
       font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: clamp(34px, 6vw, 54px); font-weight: 500;
-      letter-spacing: .035em; line-height: 1.15; text-align: center;
+
+      /* ── голубой фон с мягкими разводами и потёртостями ── */
+      background-color: #9ed3e8;
+      background-image:
+        radial-gradient(130% 100% at 12% -10%, #dcf1fb 0%, rgba(220, 241, 251, 0) 58%),
+        radial-gradient(110% 85% at 88% 0%, #eaf7fd 0%, rgba(234, 247, 253, 0) 52%),
+        radial-gradient(120% 90% at 50% 108%, #4f9ec4 0%, rgba(79, 158, 196, 0) 66%),
+        radial-gradient(circle at 16% 30%, rgba(255, 255, 255, .34) 0%, rgba(255, 255, 255, 0) 24%),
+        radial-gradient(circle at 74% 18%, rgba(255, 255, 255, .26) 0%, rgba(255, 255, 255, 0) 19%),
+        radial-gradient(circle at 38% 74%, rgba(18, 76, 108, .16) 0%, rgba(18, 76, 108, 0) 27%),
+        radial-gradient(circle at 90% 62%, rgba(18, 76, 108, .13) 0%, rgba(18, 76, 108, 0) 21%),
+        radial-gradient(circle at 6% 88%, rgba(255, 255, 255, .18) 0%, rgba(255, 255, 255, 0) 25%),
+        linear-gradient(160deg, #b7e2f3 0%, #93cfe7 45%, #7dbdd9 100%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
     }
+
+    /* два слоя текстуры поверх фона */
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* мелкое зерно — «потёртая бумага» */
+    body::before {
+      opacity: .45;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)' opacity='0.55'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    /* крупные разводы — следы времени */
+    body::after {
+      opacity: .5;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='5' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='520' height='520' filter='url(%23s)' opacity='0.6'/%3E%3C/svg%3E");
+      background-size: 520px 520px;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 1000px);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 40px 20px 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: transparent;
+    }
+
+    .title {
+      margin: 0;
+      color: #1f4356;
+      font-family: "Parisienne", "Brush Script MT", cursive;
+      font-size: clamp(48px, 8vw, 76px);
+      font-weight: 400;
+      line-height: 1.15;
+      text-align: center;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+      animation: fadeUp .9s ease-out both;
+    }
+
+    .names {
+      margin: 7px 0 0;
+      color: #16323f;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(34px, 6vw, 54px);
+      font-weight: 500;
+      letter-spacing: .035em;
+      line-height: 1.15;
+      text-align: center;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, .45);
+      animation: fadeUp .9s ease-out .12s both;
+    }
+
     .ampersand {
-      display: inline-block; padding: 0 .12em; color: #777;
-      font-family: "Parisienne", cursive; font-size: .9em; font-weight: 400;
+      display: inline-block;
+      padding: 0 .12em;
+      color: #5a8496;
+      font-family: "Parisienne", cursive;
+      font-size: .9em;
+      font-weight: 400;
     }
+
     .image-wrap {
-      width: min(100%, 760px); margin: 18px auto 0;
-      display: flex; justify-content: center; align-items: center;
+      width: min(100%, 760px);
+      /* ── картинка опущена ниже ── */
+      margin: 52px auto 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeUp 1.1s ease-out .24s both;
     }
-    .couple-image { display: block; width: 100%; height: auto; object-fit: contain; }
+
+    .couple-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 26px rgba(14, 62, 92, .28));
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 600px) {
-      .page { padding: 28px 10px 16px; }
-      .image-wrap { margin-top: 12px; }
+      .page { padding: 30px 12px 40px; }
+      .image-wrap { margin-top: 34px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .title, .names, .image-wrap { animation: none; }
     }
   </style>
 </head>
