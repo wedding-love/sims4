@@ -578,15 +578,42 @@
       background: rgba(255, 255, 255, .4);
     }
 
-    /* ── блок «Контакты»: текст слева, фото справа, одна строка ── */
+    /* ── блок «Контакты»: «отрывной лист» + фото справа ── */
     .contacts {
+      position: relative;
       width: min(100%, 900px);
-      margin: 48px auto 0;
+      margin: 20px auto 0;
+      padding: 46px 12px 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: clamp(18px, 4vw, 44px);
+      gap: clamp(20px, 4vw, 48px);
       animation: fadeUp 1.1s cubic-bezier(.22, .8, .3, 1) 1.8s both;
+    }
+
+    /* пунктирная линия «отрыва» сверху */
+    .contacts::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      left: 4%;
+      right: 4%;
+      height: 0;
+      border-top: 2px dashed rgba(22, 50, 63, 0.5);
+    }
+
+    /* маленькие «проколы» по краям линии — как у отрывного билета */
+    .contacts::after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: calc(4% - 5px);
+      right: calc(4% - 5px);
+      height: 14px;
+      pointer-events: none;
+      background:
+        radial-gradient(circle 4px at 0 50%, rgba(22, 50, 63, 0.5) 98%, transparent 100%) no-repeat left center / 12px 12px,
+        radial-gradient(circle 4px at 100% 50%, rgba(22, 50, 63, 0.5) 98%, transparent 100%) no-repeat right center / 12px 12px;
     }
 
     .contacts-info {
@@ -653,9 +680,10 @@
       outline: none;
     }
 
+    /* фото организатора — увеличенное */
     .contacts-photo {
       flex: 0 1 auto;
-      width: clamp(120px, 24vw, 260px);
+      width: clamp(180px, 30vw, 360px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -703,9 +731,15 @@
       .rsvp-form { padding: 12% 10% 8% 10%; gap: 8px; font-size: 14px; }
       .rsvp-check input[type="checkbox"] { width: 16px; height: 16px; }
       .rsvp-submit { padding: 9px 28px; }
-      /* контакты: фото меньше, но всё ещё справа */
-      .contacts { margin-top: 36px; gap: 14px; }
-      .contacts-photo { width: clamp(96px, 30vw, 150px); }
+      /* контакты: линия отрыва + фото чуть меньше, но всё ещё справа */
+      .contacts {
+        margin-top: 10px;
+        padding: 38px 4px 4px;
+        gap: 14px;
+      }
+      .contacts::before { top: 10px; left: 2%; right: 2%; }
+      .contacts::after  { top: 4px; left: calc(2% - 5px); right: calc(2% - 5px); }
+      .contacts-photo { width: clamp(110px, 34vw, 190px); }
     }
 
     @media (prefers-reduced-motion: reduce) {
