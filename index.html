@@ -7,7 +7,7 @@
   <title>Артём &amp; Ольга — Wedding Day</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Parisienne&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; }
 
@@ -20,10 +20,14 @@
       min-height: 100%;
       color: #16323f;
       font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 500;
 
-      /* ── голубой фон с мягкими разводами и потёртостями ── */
+      /* ── голубой фон: бумажная текстура + разводы ── */
       background-color: #9ed3e8;
       background-image:
+        /* 1. волокна бумаги */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008 0.09' numOctaves='4' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23f)' opacity='0.55'/%3E%3C/svg%3E"),
+        /* 2–9. мягкие разводы */
         radial-gradient(130% 100% at 12% -10%, #dcf1fb 0%, rgba(220, 241, 251, 0) 58%),
         radial-gradient(110% 85% at 88% 0%, #eaf7fd 0%, rgba(234, 247, 253, 0) 52%),
         radial-gradient(120% 90% at 50% 108%, #4f9ec4 0%, rgba(79, 158, 196, 0) 66%),
@@ -32,9 +36,19 @@
         radial-gradient(circle at 38% 74%, rgba(18, 76, 108, .16) 0%, rgba(18, 76, 108, 0) 27%),
         radial-gradient(circle at 90% 62%, rgba(18, 76, 108, .13) 0%, rgba(18, 76, 108, 0) 21%),
         radial-gradient(circle at 6% 88%, rgba(255, 255, 255, .18) 0%, rgba(255, 255, 255, 0) 25%),
+        /* 10. базовый градиент */
         linear-gradient(160deg, #b7e2f3 0%, #93cfe7 45%, #7dbdd9 100%);
+      background-blend-mode:
+        soft-light,
+        normal, normal, normal, normal,
+        normal, normal, normal, normal, normal;
+      background-size:
+        300px 300px,
+        auto, auto, auto, auto,
+        auto, auto, auto, auto, auto;
       background-attachment: fixed;
-      background-repeat: no-repeat;
+      background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat,
+                         no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
     }
 
     /* два слоя текстуры поверх фона */
@@ -49,7 +63,7 @@
 
     /* мелкое зерно — «потёртая бумага» */
     body::before {
-      opacity: .45;
+      opacity: .5;
       mix-blend-mode: overlay;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)' opacity='0.55'/%3E%3C/svg%3E");
       background-size: 180px 180px;
@@ -57,7 +71,7 @@
 
     /* крупные разводы — следы времени */
     body::after {
-      opacity: .5;
+      opacity: .55;
       mix-blend-mode: soft-light;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='5' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='520' height='520' filter='url(%23s)' opacity='0.6'/%3E%3C/svg%3E");
       background-size: 520px 520px;
@@ -85,7 +99,7 @@
       line-height: 1.15;
       text-align: center;
       text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
-      animation: fadeUp .9s ease-out both;
+      animation: fadeUp .9s cubic-bezier(.22, .8, .3, 1) both;
     }
 
     .names {
@@ -93,12 +107,12 @@
       color: #16323f;
       font-family: "Cormorant Garamond", Georgia, serif;
       font-size: clamp(34px, 6vw, 54px);
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: .035em;
       line-height: 1.15;
       text-align: center;
       text-shadow: 0 1px 0 rgba(255, 255, 255, .45);
-      animation: fadeUp .9s ease-out .12s both;
+      animation: fadeUp .9s cubic-bezier(.22, .8, .3, 1) .12s both;
     }
 
     .ampersand {
@@ -117,7 +131,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      animation: fadeUp 1.1s ease-out .24s both;
+      animation: zoomFade 1.1s cubic-bezier(.22, .8, .3, 1) .24s both;
     }
 
     .couple-image {
@@ -137,7 +151,7 @@
       background: transparent;
       border: 0;
       box-shadow: none;
-      animation: fadeUp 1.1s ease-out .36s both;
+      animation: fadeUp 1.1s cubic-bezier(.22, .8, .3, 1) .36s both;
     }
 
     .invitation-title {
@@ -155,7 +169,7 @@
       max-width: 54ch;
       color: #1b3a4a;
       font-size: clamp(18px, 2.5vw, 22px);
-      font-weight: 400;
+      font-weight: 500;
       line-height: 1.65;
       letter-spacing: .012em;
     }
@@ -168,7 +182,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      animation: fadeUp 1.2s ease-out .48s both;
+      animation: zoomFade 1.2s cubic-bezier(.22, .8, .3, 1) .48s both;
     }
 
     .calendar-image {
@@ -179,9 +193,126 @@
       filter: drop-shadow(0 18px 26px rgba(14, 62, 92, .26));
     }
 
+    /* ── блок «Место проведения» ── */
+    .venue {
+      width: min(100%, 700px);
+      margin: 54px auto 0;
+      padding: 0 10px;
+      text-align: center;
+      animation: fadeUp 1.1s cubic-bezier(.22, .8, .3, 1) .6s both;
+    }
+
+    .venue-title {
+      margin: 0 0 14px;
+      color: #1f4356;
+      font-family: "Parisienne", "Brush Script MT", cursive;
+      font-size: clamp(38px, 6vw, 54px);
+      font-weight: 400;
+      line-height: 1.2;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, .55);
+    }
+
+    .venue-name {
+      margin: 0 0 6px;
+      color: #16323f;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: .02em;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, .4);
+    }
+
+    .venue-address {
+      margin: 0;
+      color: #35697f;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(17px, 2.2vw, 21px);
+      font-weight: 500;
+      line-height: 1.5;
+      letter-spacing: .06em;
+    }
+
+    /* ── карточка локации + кнопка на карте ── */
+    .venue-card {
+      position: relative;
+      width: min(100%, 760px);
+      margin: 26px auto 0;
+      animation: zoomFade 1.2s cubic-bezier(.22, .8, .3, 1) .72s both;
+    }
+
+    .venue-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 28px rgba(14, 62, 92, .3));
+    }
+
+    .map-btn {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 17px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .8);
+      background: rgba(255, 255, 255, .16);
+      -webkit-backdrop-filter: blur(8px) saturate(130%);
+      backdrop-filter: blur(8px) saturate(130%);
+      box-shadow:
+        0 8px 22px rgba(14, 62, 92, .3),
+        inset 0 1px 0 rgba(255, 255, 255, .55);
+      color: #fff;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(13px, 1.6vw, 15px);
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-shadow: 0 1px 4px rgba(10, 45, 70, .55);
+      transition: background .25s ease, transform .25s ease, box-shadow .25s ease;
+      animation: btnGlow 3.6s ease-in-out infinite;
+    }
+
+    .map-btn:hover {
+      background: rgba(255, 255, 255, .34);
+      transform: translateY(-2px);
+      box-shadow:
+        0 12px 26px rgba(14, 62, 92, .38),
+        inset 0 1px 0 rgba(255, 255, 255, .7);
+    }
+
+    .map-btn:active {
+      transform: translateY(0);
+    }
+
+    .map-btn:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
+    .map-btn-icon {
+      flex: none;
+      display: block;
+    }
+
+    /* ── анимации ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
+      from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes zoomFade {
+      from { opacity: 0; transform: translateY(22px) scale(.975); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes btnGlow {
+      0%, 100% { box-shadow: 0 8px 22px rgba(14, 62, 92, .3), inset 0 1px 0 rgba(255, 255, 255, .55); }
+      50%      { box-shadow: 0 8px 26px rgba(14, 62, 92, .45), inset 0 1px 0 rgba(255, 255, 255, .75); }
     }
 
     @media (max-width: 600px) {
@@ -189,10 +320,15 @@
       .image-wrap { margin-top: 34px; }
       .invitation { margin-top: 38px; padding: 0 4px; }
       .calendar-wrap { margin-top: 18px; }
+      .venue { margin-top: 38px; padding: 0 4px; }
+      .venue-card { margin-top: 18px; }
+      .map-btn { right: 9px; bottom: 9px; padding: 7px 13px; gap: 6px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .title, .names, .image-wrap, .invitation, .calendar-wrap { animation: none; }
+      .title, .names, .image-wrap, .invitation,
+      .calendar-wrap, .venue, .venue-card { animation: none; }
+      .map-btn { animation: none; }
     }
   </style>
 </head>
@@ -215,6 +351,29 @@
 
     <div class="calendar-wrap">
       <img class="calendar-image" src="календарь.png" alt="Свадебный календарь в стиле The Sims — август 2027">
+    </div>
+
+    <section class="venue">
+      <h2 class="venue-title">Место проведения</h2>
+      <p class="venue-name">Ресторан «Villa Bianca»</p>
+      <p class="venue-address">ул. Приморская, 17</p>
+    </section>
+
+    <div class="venue-card">
+      <img class="venue-image" src="Глянцевая карточка локации Villa Bianca.png" alt="Локация Villa Bianca — ресторан на ул. Приморской, 17">
+      <a class="map-btn"
+         href="https://yandex.ru/maps/?text=%D0%A0%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD%20Villa%20Bianca%2C%20%D1%83%D0%BB.%20%D0%9F%D1%80%D0%B8%D0%BC%D0%BE%D1%80%D1%81%D0%BA%D0%B0%D1%8F%2C%2017"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Открыть ресторан Villa Bianca на Яндекс.Картах">
+        <svg class="map-btn-icon" viewBox="0 0 24 24" width="15" height="15" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11z"/>
+          <circle cx="12" cy="10" r="2.6"/>
+        </svg>
+        На карте
+      </a>
     </div>
   </main>
 </body>
