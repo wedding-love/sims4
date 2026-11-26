@@ -237,7 +237,8 @@
     .venue-card {
       position: relative;
       width: min(100%, 760px);
-      margin: 26px auto 0;
+      /* ── карточка поднята ближе к тексту ── */
+      margin: 12px auto 0;
       animation: zoomFade 1.2s cubic-bezier(.22, .8, .3, 1) .72s both;
     }
 
@@ -249,22 +250,18 @@
       filter: drop-shadow(0 18px 28px rgba(14, 62, 92, .3));
     }
 
+    /* полностью прозрачная кнопка в правом верхнем углу фото */
     .map-btn {
       position: absolute;
+      top: 14px;
       right: 14px;
-      bottom: 14px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 9px 17px;
+      padding: 8px 16px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, .8);
-      background: rgba(255, 255, 255, .16);
-      -webkit-backdrop-filter: blur(8px) saturate(130%);
-      backdrop-filter: blur(8px) saturate(130%);
-      box-shadow:
-        0 8px 22px rgba(14, 62, 92, .3),
-        inset 0 1px 0 rgba(255, 255, 255, .55);
+      border: 1px solid rgba(255, 255, 255, .7);
+      background: transparent;
       color: #fff;
       font-family: "Cormorant Garamond", Georgia, serif;
       font-size: clamp(13px, 1.6vw, 15px);
@@ -273,16 +270,13 @@
       text-transform: uppercase;
       text-decoration: none;
       text-shadow: 0 1px 4px rgba(10, 45, 70, .55);
-      transition: background .25s ease, transform .25s ease, box-shadow .25s ease;
-      animation: btnGlow 3.6s ease-in-out infinite;
+      transition: background .25s ease, border-color .25s ease, transform .25s ease;
     }
 
     .map-btn:hover {
-      background: rgba(255, 255, 255, .34);
-      transform: translateY(-2px);
-      box-shadow:
-        0 12px 26px rgba(14, 62, 92, .38),
-        inset 0 1px 0 rgba(255, 255, 255, .7);
+      background: rgba(255, 255, 255, .14);
+      border-color: rgba(255, 255, 255, .95);
+      transform: translateY(-1px);
     }
 
     .map-btn:active {
@@ -310,25 +304,19 @@
       to   { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    @keyframes btnGlow {
-      0%, 100% { box-shadow: 0 8px 22px rgba(14, 62, 92, .3), inset 0 1px 0 rgba(255, 255, 255, .55); }
-      50%      { box-shadow: 0 8px 26px rgba(14, 62, 92, .45), inset 0 1px 0 rgba(255, 255, 255, .75); }
-    }
-
     @media (max-width: 600px) {
       .page { padding: 30px 12px 40px; }
       .image-wrap { margin-top: 34px; }
       .invitation { margin-top: 38px; padding: 0 4px; }
       .calendar-wrap { margin-top: 18px; }
       .venue { margin-top: 38px; padding: 0 4px; }
-      .venue-card { margin-top: 18px; }
-      .map-btn { right: 9px; bottom: 9px; padding: 7px 13px; gap: 6px; }
+      .venue-card { margin-top: 8px; }
+      .map-btn { top: 9px; right: 9px; padding: 6px 12px; gap: 6px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .title, .names, .image-wrap, .invitation,
       .calendar-wrap, .venue, .venue-card { animation: none; }
-      .map-btn { animation: none; }
     }
   </style>
 </head>
