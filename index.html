@@ -177,7 +177,6 @@
     /* ── свадебный календарь ── */
     .calendar-wrap {
       width: min(100%, 760px);
-      /* ── календарь поднят ближе к тексту ── */
       margin: 26px auto 0;
       display: flex;
       justify-content: center;
@@ -237,8 +236,8 @@
     .venue-card {
       position: relative;
       width: min(100%, 760px);
-      /* ── карточка поднята ближе к тексту ── */
-      margin: 12px auto 0;
+      /* ── карточка поднята ещё выше, вплотную к адресу ── */
+      margin: -6px auto 0;
       animation: zoomFade 1.2s cubic-bezier(.22, .8, .3, 1) .72s both;
     }
 
@@ -250,7 +249,7 @@
       filter: drop-shadow(0 18px 28px rgba(14, 62, 92, .3));
     }
 
-    /* полностью прозрачная кнопка в правом верхнем углу фото */
+    /* прозрачная кнопка, но текст и ободок хорошо видны на светлом фото */
     .map-btn {
       position: absolute;
       top: 14px;
@@ -260,22 +259,22 @@
       gap: 8px;
       padding: 8px 16px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, .7);
+      border: 1.5px solid rgba(22, 50, 63, .75);
       background: transparent;
-      color: #fff;
+      color: #16323f;
       font-family: "Cormorant Garamond", Georgia, serif;
       font-size: clamp(13px, 1.6vw, 15px);
       font-weight: 700;
       letter-spacing: .1em;
       text-transform: uppercase;
       text-decoration: none;
-      text-shadow: 0 1px 4px rgba(10, 45, 70, .55);
-      transition: background .25s ease, border-color .25s ease, transform .25s ease;
+      transition: background .25s ease, border-color .25s ease, color .25s ease, transform .25s ease;
     }
 
     .map-btn:hover {
-      background: rgba(255, 255, 255, .14);
-      border-color: rgba(255, 255, 255, .95);
+      background: rgba(255, 255, 255, .28);
+      border-color: #16323f;
+      color: #0e2630;
       transform: translateY(-1px);
     }
 
@@ -284,7 +283,7 @@
     }
 
     .map-btn:focus-visible {
-      outline: 2px solid #fff;
+      outline: 2px solid #16323f;
       outline-offset: 3px;
     }
 
@@ -310,7 +309,7 @@
       .invitation { margin-top: 38px; padding: 0 4px; }
       .calendar-wrap { margin-top: 18px; }
       .venue { margin-top: 38px; padding: 0 4px; }
-      .venue-card { margin-top: 8px; }
+      .venue-card { margin-top: -4px; }
       .map-btn { top: 9px; right: 9px; padding: 6px 12px; gap: 6px; }
     }
 
