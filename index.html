@@ -126,7 +126,6 @@
 
     .image-wrap {
       width: min(100%, 760px);
-      /* ── картинка опущена ниже ── */
       margin: 52px auto 0;
       display: flex;
       justify-content: center;
@@ -237,7 +236,6 @@
       position: relative;
       display: block;
       width: min(100%, 760px);
-      /* ── карточка ещё выше, почти вплотную к адресу ── */
       margin: -18px auto 0;
       text-decoration: none;
       -webkit-tap-highlight-color: transparent;
@@ -266,14 +264,14 @@
     /* ── блок «Программа дня» ── */
     .program {
       width: min(100%, 700px);
-      margin: 54px auto 0;
+      margin: 40px auto 0;
       padding: 0 10px;
       text-align: center;
       animation: fadeUp 1.1s cubic-bezier(.22, .8, .3, 1) .84s both;
     }
 
     .program-title {
-      margin: 0 0 14px;
+      margin: 0 0 12px;
       color: #1f4356;
       font-family: "Parisienne", "Brush Script MT", cursive;
       font-size: clamp(38px, 6vw, 54px);
@@ -292,17 +290,66 @@
       letter-spacing: .012em;
     }
 
-    /* ── фото расписания ── */
+    /* ── фото расписания: обрезаем верх и подтягиваем к тексту ── */
     .program-wrap {
       width: min(100%, 760px);
-      margin: 20px auto 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      margin: 14px auto 0;
+      filter: drop-shadow(0 18px 28px rgba(14, 62, 92, .3));
       animation: zoomFade 1.2s cubic-bezier(.22, .8, .3, 1) .96s both;
     }
 
+    .program-crop {
+      display: block;
+      overflow: hidden;
+    }
+
     .program-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-top: -4%;
+    }
+
+    /* ── блок «Дресс-код» ── */
+    .dresscode {
+      width: min(100%, 700px);
+      margin: 40px auto 0;
+      padding: 0 10px;
+      text-align: center;
+      animation: fadeUp 1.1s cubic-bezier(.22, .8, .3, 1) 1.08s both;
+    }
+
+    .dresscode-title {
+      margin: 0 0 12px;
+      color: #1f4356;
+      font-family: "Parisienne", "Brush Script MT", cursive;
+      font-size: clamp(38px, 6vw, 54px);
+      font-weight: 400;
+      line-height: 1.2;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, .55);
+    }
+
+    .dresscode-text {
+      margin: 0 auto;
+      max-width: 54ch;
+      color: #1b3a4a;
+      font-size: clamp(17px, 2.3vw, 21px);
+      font-weight: 500;
+      line-height: 1.6;
+      letter-spacing: .012em;
+    }
+
+    /* ── фото гардероба ── */
+    .dresscode-wrap {
+      width: min(100%, 760px);
+      margin: 14px auto 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: zoomFade 1.2s cubic-bezier(.22, .8, .3, 1) 1.2s both;
+    }
+
+    .dresscode-image {
       display: block;
       width: 100%;
       height: auto;
@@ -328,14 +375,17 @@
       .calendar-wrap { margin-top: 18px; }
       .venue { margin-top: 38px; padding: 0 4px; }
       .venue-card { margin-top: -12px; }
-      .program { margin-top: 38px; padding: 0 4px; }
-      .program-wrap { margin-top: 14px; }
+      .program { margin-top: 32px; padding: 0 4px; }
+      .program-wrap { margin-top: 10px; }
+      .dresscode { margin-top: 32px; padding: 0 4px; }
+      .dresscode-wrap { margin-top: 10px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .title, .names, .image-wrap, .invitation,
       .calendar-wrap, .venue, .venue-card,
-      .program, .program-wrap { animation: none; }
+      .program, .program-wrap,
+      .dresscode, .dresscode-wrap { animation: none; }
     }
   </style>
 </head>
@@ -380,7 +430,18 @@
     </section>
 
     <div class="program-wrap">
-      <img class="program-image" src="Глянцевое свадебное расписание Симс.png" alt="Свадебное расписание в стиле The Sims">
+      <div class="program-crop">
+        <img class="program-image" src="Глянцевое свадебное расписание Симс.png" alt="Свадебное расписание в стиле The Sims">
+      </div>
+    </div>
+
+    <section class="dresscode">
+      <h2 class="dresscode-title">Дресс-код</h2>
+      <p class="dresscode-text">Будем признательны, если вы поддержите атмосферу нашего праздника и выберете наряды в соответствии с настроением торжества.</p>
+    </section>
+
+    <div class="dresscode-wrap">
+      <img class="dresscode-image" src="Редактор персонажей_ пара и гардероб.png" alt="Дресс-код — пара и гардероб в стиле The Sims">
     </div>
   </main>
 </body>
