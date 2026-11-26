@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
-  <!-- НОВЫЕ ШРИФТЫ: Marck Script (заголовки) + Tenor Sans (текст) -->
-  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Tenor+Sans&display=swap" rel="stylesheet">
+  <!-- НОВЫЕ ШРИФТЫ: Yeseva One (заголовки) + Raleway (текст) -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&family=Yeseva+One&display=swap" rel="stylesheet">
   
   <script>document.documentElement.classList.add('js-anim');</script>
   <style>
@@ -20,13 +20,14 @@
       --color-text: #16323f;
       --color-soft: #35697f;
 
-      /* ОБНОВЛЕННЫЕ ПЕРЕМЕННЫЕ ШРИФТОВ */
-      --font-display: "Marck Script", cursive;
-      --font-body: "Tenor Sans", sans-serif;
+      /* ОБНОВЛЕННЫЕ ШРИФТЫ */
+      --font-display: "Yeseva One", "Times New Roman", serif;
+      --font-body: "Raleway", "Helvetica Neue", sans-serif;
 
-      --fs-title: clamp(34px, 5.4vw, 48px);
-      --fs-body:  clamp(15px, 2.1vw, 18px); /* Tenor Sans чуть мельче, поэтому скорректировал размер */
-      --fs-lead:  clamp(17px, 2.3vw, 20px);
+      /* Скорректированные размеры под Yeseva One */
+      --fs-title: clamp(26px, 4.2vw, 38px);
+      --fs-body:  clamp(15px, 2vw, 17px); 
+      --fs-lead:  clamp(16px, 2.2vw, 19px);
 
       --section-gap: 32px;
       --photo-gap: 12px;
@@ -43,7 +44,7 @@
       min-height: 100%;
       color: var(--color-text);
       font-family: var(--font-body);
-      font-weight: 400; /* Tenor Sans имеет только 400 */
+      font-weight: 400;
       overflow-x: hidden;
 
       background-color: #d4ebe5;
@@ -124,22 +125,24 @@
       margin: 0;
       color: var(--color-title);
       font-family: var(--font-display);
-      font-size: clamp(50px, 8.5vw, 82px); /* Чуть увеличил для Marck Script */
+      font-size: clamp(38px, 6.5vw, 62px);
       font-weight: 400;
-      line-height: 1.15;
+      line-height: 1.25;
+      letter-spacing: 0.02em;
       text-align: center;
       text-shadow: 0 1px 0 rgba(255, 255, 255, .55);
     }
 
     .names {
-      margin: 6px 0 0;
+      margin: 12px 0 0;
       color: var(--color-text);
       font-family: var(--font-body);
-      font-size: clamp(24px, 4.5vw, 38px);
-      font-weight: 400;
-      letter-spacing: .05em;
-      line-height: 1.15;
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-weight: 300; /* Тонкий Raleway для контраста с Yeseva One */
+      letter-spacing: .15em;
+      line-height: 1.2;
       text-align: center;
+      text-transform: uppercase;
       text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
     }
 
@@ -148,8 +151,9 @@
       padding: 0 .15em;
       color: #5a8496;
       font-family: var(--font-display);
-      font-size: 1.2em;
+      font-size: 1.1em;
       font-weight: 400;
+      text-transform: none;
     }
 
     .image-wrap {
@@ -175,12 +179,13 @@
     .wishes-title,
     .rsvp-title,
     .contacts-title {
-      margin: 0 0 14px;
+      margin: 0 0 16px;
       color: var(--color-title);
       font-family: var(--font-display);
       font-size: var(--fs-title);
       font-weight: 400;
-      line-height: 1.2;
+      line-height: 1.3;
+      letter-spacing: 0.02em;
       text-align: center;
       text-shadow: 0 1px 0 rgba(255, 255, 255, .55);
     }
@@ -197,8 +202,8 @@
       font-family: var(--font-body);
       font-size: var(--fs-body);
       font-weight: 400;
-      line-height: 1.7; /* Чуть увеличил межстрочный интервал для читаемости */
-      letter-spacing: .02em;
+      line-height: 1.7;
+      letter-spacing: .03em;
       text-align: center;
     }
 
@@ -214,7 +219,7 @@
       text-align: center;
     }
 
-    .invitation-text { font-size: var(--fs-lead); }
+    .invitation-text { font-size: var(--fs-lead); font-weight: 300; }
 
     .calendar-wrap {
       width: min(100%, 760px);
@@ -236,10 +241,10 @@
       margin: 0 0 6px;
       color: var(--color-text);
       font-family: var(--font-body);
-      font-size: clamp(20px, 3vw, 24px);
-      font-weight: 400;
+      font-size: clamp(18px, 2.8vw, 22px);
+      font-weight: 500;
       line-height: 1.3;
-      letter-spacing: .02em;
+      letter-spacing: .05em;
       text-shadow: 0 1px 0 rgba(255, 255, 255, .4);
     }
 
@@ -293,15 +298,15 @@
 
     .program-wrap { filter: var(--shadow); }
 
-    /* ОБРЕЗКА ФОТО ПРОГРАММЫ: сделано более квадратным */
+    /* ОБРЕЗКА ФОТО ПРОГРАММЫ */
     .program-crop { display: block; overflow: hidden; }
 
     .program-image {
       display: block;
       width: 100%;
       height: auto;
-      margin-top: -15%; /* Увеличено с -5% до -15% */
-      margin-bottom: -15%; /* Увеличено с -5% до -15% */
+      margin-top: -15%;
+      margin-bottom: -15%;
     }
 
     .dresscode-image,
@@ -337,10 +342,10 @@
       gap: clamp(10px, 2.1vw, 16px);
       color: var(--color-text);
       font-family: var(--font-body);
-      font-size: clamp(14px, 1.8vw, 18px); /* Скорректировано под Tenor Sans */
-      font-weight: 400;
+      font-size: clamp(13px, 1.7vw, 16px);
+      font-weight: 500;
       line-height: 1.35;
-      letter-spacing: .02em;
+      letter-spacing: .03em;
       text-align: left;
       overflow-y: auto;
     }
@@ -349,11 +354,11 @@
 
     .rsvp-label {
       display: block;
-      margin: 0 0 5px;
+      margin: 0 0 6px;
       color: var(--color-title);
-      font-weight: 400;
-      letter-spacing: .04em;
-      font-size: .92em;
+      font-weight: 600;
+      letter-spacing: .08em;
+      font-size: .9em;
       text-transform: uppercase;
     }
 
@@ -376,6 +381,7 @@
     .rsvp-input::placeholder {
       color: rgba(22, 50, 63, .5);
       font-style: italic;
+      font-weight: 300;
     }
 
     .rsvp-input:focus { border-bottom-color: var(--color-text); }
@@ -422,9 +428,9 @@
       background: transparent;
       color: var(--color-text);
       font-family: inherit;
-      font-size: .95em;
-      font-weight: 400;
-      letter-spacing: .12em;
+      font-size: .9em;
+      font-weight: 500;
+      letter-spacing: .15em;
       text-transform: uppercase;
       cursor: pointer;
       transition: background .25s ease, border-color .25s ease, color .25s ease;
@@ -483,18 +489,18 @@
     .contacts-name {
       margin: 0 0 4px;
       color: var(--color-text);
-      font-size: clamp(20px, 3vw, 26px);
-      font-weight: 400;
+      font-size: clamp(18px, 2.5vw, 22px);
+      font-weight: 500;
       line-height: 1.3;
-      letter-spacing: .02em;
+      letter-spacing: .05em;
       text-shadow: 0 1px 0 rgba(255, 255, 255, .4);
     }
 
     .contacts-role {
       margin: 0 0 10px;
       color: var(--color-soft);
-      font-size: clamp(13px, 1.8vw, 16px);
-      font-weight: 400;
+      font-size: clamp(12px, 1.5vw, 14px);
+      font-weight: 500;
       letter-spacing: .1em;
       text-transform: uppercase;
     }
@@ -503,9 +509,9 @@
       display: inline-block;
       margin: 0;
       color: var(--color-title);
-      font-size: clamp(18px, 2.8vw, 24px);
-      font-weight: 400;
-      letter-spacing: .04em;
+      font-size: clamp(16px, 2.5vw, 20px);
+      font-weight: 500;
+      letter-spacing: .05em;
       text-decoration: none;
       border-bottom: 1px solid rgba(22, 50, 63, .35);
       padding-bottom: 2px;
@@ -597,7 +603,7 @@
       .image-wrap { margin-top: 26px; }
 
       .rsvp-frame { width: calc(100% + 16px); margin: 10px -8px 0; }
-      .rsvp-form { padding: 12% 10% 8% 10%; gap: 8px; font-size: 13px; }
+      .rsvp-form { padding: 12% 10% 8% 10%; gap: 8px; font-size: 12px; }
       .rsvp-check input[type="checkbox"] { width: 16px; height: 16px; }
       .rsvp-submit { padding: 9px 28px; }
 
