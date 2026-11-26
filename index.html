@@ -80,7 +80,7 @@
     .page {
       position: relative;
       z-index: 1;
-      width: min(100%, 1000px);
+      width: min(100%, 1080px);
       min-height: 100vh;
       margin: 0 auto;
       padding: 40px 20px 56px;
@@ -433,10 +433,10 @@
       letter-spacing: .012em;
     }
 
-    /* ── рамка с формой поверх фото (увеличена) ── */
+    /* ── рамка с формой поверх фото (ещё шире) ── */
     .rsvp-frame {
       position: relative;
-      width: min(100%, 860px);
+      width: min(100%, 1000px);
       margin: 22px auto 0;
       animation: zoomFade 1.2s cubic-bezier(.22, .8, .3, 1) 1.68s both;
     }
@@ -457,10 +457,10 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      gap: clamp(8px, 1.9vw, 14px);
+      gap: clamp(10px, 2.1vw, 16px);
       color: #16323f;
       font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: clamp(14px, 2vw, 19px);
+      font-size: clamp(16px, 2.1vw, 21px);
       font-weight: 500;
       line-height: 1.35;
       letter-spacing: .02em;
@@ -477,7 +477,7 @@
 
     .rsvp-label {
       display: block;
-      margin: 0 0 4px;
+      margin: 0 0 5px;
       color: #1f4356;
       font-weight: 600;
       letter-spacing: .04em;
@@ -489,7 +489,7 @@
     .rsvp-input {
       display: block;
       width: 100%;
-      padding: 3px 0 5px;
+      padding: 4px 0 6px;
       border: 0;
       border-bottom: 1px solid rgba(22, 50, 63, .55);
       background: transparent;
@@ -515,14 +515,14 @@
     .rsvp-options {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 4px;
       width: 100%;
     }
 
     .rsvp-check {
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 10px;
       width: 100%;
       cursor: pointer;
       font-size: 1em;
@@ -536,8 +536,8 @@
 
     .rsvp-check input[type="checkbox"] {
       flex: none;
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       margin: 0;
       accent-color: #35697f;
       cursor: pointer;
@@ -547,11 +547,11 @@
       display: inline-block;
     }
 
-    /* кнопка отправки */
+    /* кнопка отправки — короткая, по центру */
     .rsvp-submit {
-      margin: 10px 0 0;
-      width: 100%;
-      padding: 10px 14px;
+      align-self: center;
+      margin: 14px 0 0;
+      padding: 11px 40px;
       border: 1px solid rgba(22, 50, 63, .65);
       border-radius: 999px;
       background: transparent;
@@ -603,8 +603,9 @@
       .wishes-wrap { margin-top: 10px; }
       .rsvp { margin-top: 32px; padding: 0 4px; }
       .rsvp-frame { margin-top: 16px; }
-      .rsvp-form { padding: 12% 10% 8% 10%; gap: 7px; font-size: 13px; }
-      .rsvp-check input[type="checkbox"] { width: 15px; height: 15px; }
+      .rsvp-form { padding: 12% 10% 8% 10%; gap: 8px; font-size: 14px; }
+      .rsvp-check input[type="checkbox"] { width: 16px; height: 16px; }
+      .rsvp-submit { padding: 9px 28px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -734,3 +735,4 @@
   </main>
 </body>
 </html>
+
