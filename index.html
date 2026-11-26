@@ -21,6 +21,7 @@
       color: #16323f;
       font-family: "Cormorant Garamond", Georgia, serif;
       font-weight: 500;
+      overflow-x: hidden;
 
       /* ── голубой фон: бумажная текстура + разводы ── */
       background-color: #9ed3e8;
@@ -80,7 +81,7 @@
     .page {
       position: relative;
       z-index: 1;
-      width: min(100%, 1080px);
+      width: min(100%, 1180px);
       min-height: 100vh;
       margin: 0 auto;
       padding: 40px 20px 56px;
@@ -433,10 +434,10 @@
       letter-spacing: .012em;
     }
 
-    /* ── рамка с формой поверх фото (ещё шире) ── */
+    /* ── рамка с формой: широкая и чуть выходит по бокам ── */
     .rsvp-frame {
       position: relative;
-      width: min(100%, 1000px);
+      width: min(108%, 1240px);
       margin: 22px auto 0;
       animation: zoomFade 1.2s cubic-bezier(.22, .8, .3, 1) 1.68s both;
     }
@@ -588,6 +589,10 @@
       to   { opacity: 1; transform: translateY(0) scale(1); }
     }
 
+    @media (max-width: 1280px) {
+      .rsvp-frame { width: min(104%, 1200px); }
+    }
+
     @media (max-width: 600px) {
       .page { padding: 30px 12px 40px; }
       .image-wrap { margin-top: 34px; }
@@ -602,7 +607,8 @@
       .wishes { margin-top: 32px; padding: 0 4px; }
       .wishes-wrap { margin-top: 10px; }
       .rsvp { margin-top: 32px; padding: 0 4px; }
-      .rsvp-frame { margin-top: 16px; }
+      /* на мобильных рамка растягивается до самых краёв экрана */
+      .rsvp-frame { width: calc(100% + 16px); margin: 16px -8px 0; }
       .rsvp-form { padding: 12% 10% 8% 10%; gap: 8px; font-size: 14px; }
       .rsvp-check input[type="checkbox"] { width: 16px; height: 16px; }
       .rsvp-submit { padding: 9px 28px; }
@@ -735,4 +741,3 @@
   </main>
 </body>
 </html>
-
