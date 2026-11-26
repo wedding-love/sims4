@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#c9e8dd">
+  <meta name="theme-color" content="#8ec9db">
   <title>Артём &amp; Ольга — Wedding Day</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@
       --slide: 60px;
     }
 
-    html { background: #c9e8dd; }
+    html { background: #8ec9db; }
 
     body {
       margin: 0;
@@ -42,29 +42,44 @@
       font-weight: 500;
       overflow-x: hidden;
 
-      background-color: #d4ebe5;
+      /* ── УСИЛЕННЫЙ зелёно-голубой градиент ── */
+      background-color: #a4d6e8;
       background-image:
+        /* волокна бумаги */
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008 0.09' numOctaves='4' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23f)' opacity='0.4'/%3E%3C/svg%3E"),
-        radial-gradient(130% 100% at 12% -10%, #eaf8ff 0%, rgba(234, 248, 255, 0) 60%),
-        radial-gradient(110% 85% at 88% 0%, #eefaf3 0%, rgba(238, 250, 243, 0) 55%),
-        radial-gradient(120% 90% at 50% 108%, #a3d6be 0%, rgba(163, 214, 190, 0) 66%),
-        radial-gradient(circle at 16% 30%, rgba(255, 255, 255, .45) 0%, rgba(255, 255, 255, 0) 25%),
-        radial-gradient(circle at 74% 18%, rgba(255, 255, 255, .32) 0%, rgba(255, 255, 255, 0) 20%),
-        radial-gradient(circle at 38% 74%, rgba(80, 140, 110, .13) 0%, rgba(80, 140, 110, 0) 28%),
-        radial-gradient(circle at 90% 62%, rgba(18, 76, 108, .09) 0%, rgba(18, 76, 108, 0) 22%),
-        radial-gradient(circle at 6% 88%, rgba(255, 255, 255, .22) 0%, rgba(255, 255, 255, 0) 26%),
-        linear-gradient(160deg, #d9f0f8 0%, #c9e8dd 38%, #b8ddd0 68%, #c6e8ef 100%);
+        /* верхние голубые световые пятна */
+        radial-gradient(130% 100% at 12% -10%, #c9eaf8 0%, rgba(201, 234, 248, 0) 62%),
+        radial-gradient(110% 85% at 88% 0%, #cdeee4 0%, rgba(205, 238, 228, 0) 58%),
+        /* нижнее насыщенно-зелёное свечение */
+        radial-gradient(120% 95% at 50% 112%, #4faa8c 0%, rgba(79, 170, 140, 0) 70%),
+        /* светлые блики */
+        radial-gradient(circle at 16% 30%, rgba(220, 245, 255, .5) 0%, rgba(220, 245, 255, 0) 26%),
+        radial-gradient(circle at 74% 18%, rgba(200, 245, 225, .42) 0%, rgba(200, 245, 225, 0) 24%),
+        /* глубокие зелёные и синие акценты */
+        radial-gradient(circle at 38% 74%, rgba(48, 130, 100, .26) 0%, rgba(48, 130, 100, 0) 32%),
+        radial-gradient(circle at 90% 62%, rgba(14, 70, 105, .18) 0%, rgba(14, 70, 105, 0) 28%),
+        radial-gradient(circle at 6% 88%, rgba(200, 240, 250, .28) 0%, rgba(200, 240, 250, 0) 30%),
+        /* базовый градиент: голубой → насыщенный зелёный → голубой */
+        linear-gradient(155deg,
+          #a4d6ea 0%,
+          #7dc8b0 30%,
+          #52b193 55%,
+          #63bfc6 78%,
+          #a4d8e2 100%);
       background-blend-mode:
         soft-light,
-        normal, normal, normal, normal,
-        normal, normal, normal, normal, normal;
+        normal, normal, normal,
+        normal, normal, normal, normal, normal,
+        normal;
       background-size:
         300px 300px,
-        auto, auto, auto, auto,
-        auto, auto, auto, auto, auto;
+        auto, auto, auto,
+        auto, auto, auto, auto, auto,
+        auto;
       background-attachment: fixed;
-      background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat,
-                         no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+      background-repeat: repeat, no-repeat, no-repeat, no-repeat,
+                         no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
+                         no-repeat;
     }
 
     body::before,
@@ -77,14 +92,14 @@
     }
 
     body::before {
-      opacity: .4;
+      opacity: .38;
       mix-blend-mode: overlay;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)' opacity='0.55'/%3E%3C/svg%3E");
       background-size: 180px 180px;
     }
 
     body::after {
-      opacity: .45;
+      opacity: .42;
       mix-blend-mode: soft-light;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='5' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='520' height='520' filter='url(%23s)' opacity='0.6'/%3E%3C/svg%3E");
       background-size: 520px 520px;
@@ -102,7 +117,6 @@
       background: transparent;
     }
 
-    /* ── HERO: первый экран, фото прижато к низу ── */
     .hero {
       width: 100%;
       min-height: 100vh;
@@ -114,11 +128,7 @@
       padding: 36px 0 0;
     }
 
-    .hero-top {
-      width: 100%;
-      text-align: center;
-    }
-
+    .hero-top { width: 100%; text-align: center; }
     .hero .image-wrap { margin: 0; }
 
     .title {
@@ -169,7 +179,6 @@
       filter: var(--shadow);
     }
 
-    /* ── заголовки секций ── */
     .invitation-title,
     .venue-title,
     .program-title,
@@ -187,7 +196,6 @@
       text-shadow: 0 1px 0 rgba(255, 255, 255, .55);
     }
 
-    /* ── основной текст секций ── */
     .invitation-text,
     .program-text,
     .dresscode-text,
@@ -205,7 +213,6 @@
       text-align: center;
     }
 
-    /* ── секции ── */
     .invitation,
     .venue,
     .program,
@@ -348,12 +355,7 @@
       overflow-y: auto;
     }
 
-    .rsvp-group {
-      margin: 0;
-      padding: 0;
-      border: 0;
-      width: 100%;
-    }
+    .rsvp-group { margin: 0; padding: 0; border: 0; width: 100%; }
 
     .rsvp-label {
       display: block;
@@ -448,7 +450,6 @@
 
     .rsvp-submit:active { background: rgba(255, 255, 255, .45); }
 
-    /* ── КОНТАКТЫ ── */
     .contacts {
       position: relative;
       width: min(100%, 1100px);
@@ -484,14 +485,9 @@
         radial-gradient(circle 4px at 100% 50%, rgba(22, 50, 63, 0.55) 98%, transparent 100%) no-repeat right center / 12px 12px;
     }
 
-    .contacts-info {
-      flex: 1 1 0;
-      min-width: 0;
-      text-align: left;
-    }
+    .contacts-info { flex: 1 1 0; min-width: 0; text-align: left; }
 
     .contacts-title { text-align: left; }
-
     .contacts-note { text-align: left; margin: 0 0 14px; }
 
     .contacts-name {
@@ -549,11 +545,8 @@
       filter: var(--shadow);
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       АНИМАЦИИ ПРИ ПРОКРУТКЕ
-       ═══════════════════════════════════════════════════════════ */
+    /* ═════ АНИМАЦИИ ═════ */
 
-    /* фото: плавное появление + лёгкое масштабирование + blur→clear */
     .js-anim .reveal-photo {
       opacity: 0;
       transform: scale(.965);
@@ -569,7 +562,6 @@
       filter: blur(0);
     }
 
-    /* ТЕКСТ: остаётся по центру, но выезжает сбоку к центру */
     .js-anim .reveal-text {
       opacity: 0;
       transition:
@@ -579,12 +571,8 @@
     }
     .js-anim .reveal-text.from-left  { transform: translateX(calc(-1 * var(--slide))); }
     .js-anim .reveal-text.from-right { transform: translateX(var(--slide)); }
-    .js-anim .reveal-text.is-visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    .js-anim .reveal-text.is-visible { opacity: 1; transform: translateX(0); }
 
-    /* мягкое появление блока */
     .js-anim .reveal {
       opacity: 0;
       transform: translateY(22px);
@@ -592,10 +580,7 @@
         opacity 1s ease,
         transform 1.1s cubic-bezier(.22, .8, .3, 1);
     }
-    .js-anim .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .js-anim .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 1280px) {
       .rsvp-frame { width: min(104%, 1200px); }
@@ -647,8 +632,6 @@
 </head>
 <body>
   <main class="page">
-
-    <!-- HERO: первый экран, фото прижато к низу -->
     <div class="hero">
       <div class="hero-top">
         <h1 class="title reveal-text">Wedding Day</h1>
@@ -790,7 +773,6 @@
         return;
       }
 
-      /* Чередуем стороны: 1-й слева, 2-й справа и т.д. */
       textEls.forEach(function (el, i) {
         el.classList.add(i % 2 === 0 ? 'from-left' : 'from-right');
       });
