@@ -433,7 +433,7 @@
       letter-spacing: .012em;
     }
 
-    /* ── рамка с анкетой: текст прямо поверх фото ── */
+    /* ── рамка с формой поверх фото ── */
     .rsvp-frame {
       position: relative;
       width: min(100%, 760px);
@@ -449,50 +449,132 @@
       filter: drop-shadow(0 18px 28px rgba(14, 62, 92, .3));
     }
 
-    /* поля анкеты: только текст, без обводок и фонов */
-    .rsvp-fields {
+    /* ── сама форма: стоит поверх фото ── */
+    .rsvp-form {
       position: absolute;
       inset: 0;
-      padding: 14% 13% 14% 13%;
+      padding: 9% 11% 9% 11%;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      gap: clamp(10px, 2.4vw, 18px);
+      justify-content: flex-start;
+      gap: clamp(6px, 1.6vw, 12px);
       color: #16323f;
       font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: clamp(13px, 1.9vw, 18px);
+      font-size: clamp(12px, 1.7vw, 16px);
       font-weight: 500;
-      line-height: 1.4;
+      line-height: 1.35;
       letter-spacing: .02em;
       text-align: left;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, .35);
+      overflow-y: auto;
     }
 
-    .rsvp-field {
+    .rsvp-group {
       margin: 0;
+      padding: 0;
+      border: 0;
+      width: 100%;
     }
 
-    .rsvp-field-label {
+    .rsvp-label {
       display: block;
+      margin: 0 0 3px;
       color: #1f4356;
       font-weight: 600;
       letter-spacing: .04em;
-    }
-
-    .rsvp-field-line {
-      display: block;
-      margin-top: 4px;
-      color: #35697f;
-      font-size: .9em;
-      letter-spacing: .14em;
-    }
-
-    .rsvp-field-options {
-      display: block;
-      margin-top: 2px;
-      color: #35697f;
       font-size: .92em;
+      text-transform: uppercase;
+    }
+
+    /* текстовые поля */
+    .rsvp-input {
+      display: block;
+      width: 100%;
+      padding: 2px 0 4px;
+      border: 0;
+      border-bottom: 1px solid rgba(22, 50, 63, .55);
+      background: transparent;
+      color: #16323f;
+      font-family: inherit;
+      font-size: 1em;
+      font-weight: 500;
       letter-spacing: .02em;
+      outline: none;
+      border-radius: 0;
+    }
+
+    .rsvp-input::placeholder {
+      color: rgba(22, 50, 63, .5);
+      font-style: italic;
+    }
+
+    .rsvp-input:focus {
+      border-bottom-color: #16323f;
+    }
+
+    /* чекбоксы — колонка на всю ширину */
+    .rsvp-options {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      width: 100%;
+    }
+
+    .rsvp-check {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: 500;
+      letter-spacing: .02em;
+      line-height: 1.4;
+      color: #1b3a4a;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .rsvp-check input[type="checkbox"] {
+      flex: none;
+      width: 14px;
+      height: 14px;
+      margin: 0;
+      accent-color: #35697f;
+      cursor: pointer;
+    }
+
+    .rsvp-check span {
+      display: inline-block;
+    }
+
+    /* кнопка отправки — минималистичная, внутри рамки */
+    .rsvp-submit {
+      margin: 8px 0 0;
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid rgba(22, 50, 63, .65);
+      border-radius: 999px;
+      background: transparent;
+      color: #16323f;
+      font-family: inherit;
+      font-size: .95em;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .25s ease, border-color .25s ease, color .25s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .rsvp-submit:hover,
+    .rsvp-submit:focus-visible {
+      background: rgba(255, 255, 255, .25);
+      border-color: #16323f;
+      outline: none;
+    }
+
+    .rsvp-submit:active {
+      background: rgba(255, 255, 255, .4);
     }
 
     /* ── анимации ── */
@@ -521,7 +603,7 @@
       .wishes-wrap { margin-top: 10px; }
       .rsvp { margin-top: 32px; padding: 0 4px; }
       .rsvp-frame { margin-top: 12px; }
-      .rsvp-fields { padding: 13% 12%; gap: 8px; }
+      .rsvp-form { padding: 8% 10%; gap: 6px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -605,28 +687,50 @@
 
     <div class="rsvp-frame">
       <img class="rsvp-frame-image" src="рамка.png" alt="Рамка для анкеты гостя">
-      <div class="rsvp-fields">
-        <p class="rsvp-field">
-          <span class="rsvp-field-label">Имя и фамилия</span>
-          <span class="rsvp-field-line">______________________</span>
-        </p>
-        <p class="rsvp-field">
-          <span class="rsvp-field-label">Придёте?</span>
-          <span class="rsvp-field-options">да · нет · с супругом(ой) · с ребёнком</span>
-        </p>
-        <p class="rsvp-field">
-          <span class="rsvp-field-label">Напитки</span>
-          <span class="rsvp-field-options">вино · шампанское · виски · коньяк · водка · безалкогольные</span>
-        </p>
-        <p class="rsvp-field">
-          <span class="rsvp-field-label">Пожелания по меню и аллергии</span>
-          <span class="rsvp-field-line">______________________</span>
-        </p>
-        <p class="rsvp-field">
-          <span class="rsvp-field-label">Нужен ли трансфер</span>
-          <span class="rsvp-field-options">да · нет</span>
-        </p>
-      </div>
+
+      <form class="rsvp-form" action="#" method="post" novalidate>
+        <div class="rsvp-group">
+          <label class="rsvp-label" for="rsvp-name">Имя и фамилия</label>
+          <input class="rsvp-input" id="rsvp-name" type="text" name="name" placeholder="Введите имя и фамилию" required>
+        </div>
+
+        <fieldset class="rsvp-group">
+          <legend class="rsvp-label">Придёте?</legend>
+          <div class="rsvp-options">
+            <label class="rsvp-check"><input type="checkbox" name="attendance" value="yes"><span>Да, буду с радостью</span></label>
+            <label class="rsvp-check"><input type="checkbox" name="attendance" value="no"><span>К сожалению, не смогу</span></label>
+            <label class="rsvp-check"><input type="checkbox" name="attendance" value="plus-one"><span>Приду с половинкой</span></label>
+            <label class="rsvp-check"><input type="checkbox" name="attendance" value="kids"><span>Приду с ребёнком</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="rsvp-group">
+          <legend class="rsvp-label">Напитки</legend>
+          <div class="rsvp-options">
+            <label class="rsvp-check"><input type="checkbox" name="drinks" value="wine"><span>Вино</span></label>
+            <label class="rsvp-check"><input type="checkbox" name="drinks" value="champagne"><span>Шампанское</span></label>
+            <label class="rsvp-check"><input type="checkbox" name="drinks" value="whiskey"><span>Виски</span></label>
+            <label class="rsvp-check"><input type="checkbox" name="drinks" value="cognac"><span>Коньяк</span></label>
+            <label class="rsvp-check"><input type="checkbox" name="drinks" value="vodka"><span>Водка</span></label>
+            <label class="rsvp-check"><input type="checkbox" name="drinks" value="soft"><span>Безалкогольные</span></label>
+          </div>
+        </fieldset>
+
+        <div class="rsvp-group">
+          <label class="rsvp-label" for="rsvp-menu">Пожелания по меню и аллергии</label>
+          <input class="rsvp-input" id="rsvp-menu" type="text" name="menu" placeholder="Например: без орехов">
+        </div>
+
+        <fieldset class="rsvp-group">
+          <legend class="rsvp-label">Нужен ли трансфер</legend>
+          <div class="rsvp-options">
+            <label class="rsvp-check"><input type="checkbox" name="transfer" value="yes"><span>Да, нужен</span></label>
+            <label class="rsvp-check"><input type="checkbox" name="transfer" value="no"><span>Нет, не нужен</span></label>
+          </div>
+        </fieldset>
+
+        <button class="rsvp-submit" type="submit">Отправить</button>
+      </form>
     </div>
   </main>
 </body>
