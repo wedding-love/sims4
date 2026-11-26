@@ -28,6 +28,8 @@
       --photo-gap: 12px;
 
       --shadow: drop-shadow(0 16px 26px rgba(14, 62, 92, .28));
+
+      --slide: 60px;
     }
 
     html { background: #c9e8dd; }
@@ -110,18 +112,15 @@
       justify-content: space-between;
       align-items: center;
       padding: 36px 0 0;
-      box-sizing: border-box;
     }
 
     .hero-top {
+      width: 100%;
       text-align: center;
     }
 
-    .hero .image-wrap {
-      margin: 0;
-    }
+    .hero .image-wrap { margin: 0; }
 
-    /* ── HERO ── */
     .title {
       margin: 0;
       color: var(--color-title);
@@ -170,7 +169,7 @@
       filter: var(--shadow);
     }
 
-    /* ── единые заголовки секций ── */
+    /* ── заголовки секций ── */
     .invitation-title,
     .venue-title,
     .program-title,
@@ -188,7 +187,7 @@
       text-shadow: 0 1px 0 rgba(255, 255, 255, .55);
     }
 
-    /* ── единый основной текст секций ── */
+    /* ── основной текст секций ── */
     .invitation-text,
     .program-text,
     .dresscode-text,
@@ -206,7 +205,7 @@
       text-align: center;
     }
 
-    /* ── секции: одинаковый ритм отступов ── */
+    /* ── секции ── */
     .invitation,
     .venue,
     .program,
@@ -221,7 +220,6 @@
 
     .invitation-text { font-size: var(--fs-lead); }
 
-    /* календарь */
     .calendar-wrap {
       width: min(100%, 760px);
       margin: var(--photo-gap) auto 0;
@@ -238,7 +236,6 @@
       filter: var(--shadow);
     }
 
-    /* venue */
     .venue-name {
       margin: 0 0 6px;
       color: var(--color-text);
@@ -288,7 +285,6 @@
       border-radius: 4px;
     }
 
-    /* program / dresscode / wishes — обёртки фото */
     .program-wrap,
     .dresscode-wrap,
     .wishes-wrap {
@@ -320,7 +316,6 @@
       filter: var(--shadow);
     }
 
-    /* rsvp */
     .rsvp-frame {
       position: relative;
       width: min(108%, 1240px);
@@ -574,19 +569,16 @@
       filter: blur(0);
     }
 
-    /* текст: «выезжает» сбоку, чередуя стороны */
+    /* ТЕКСТ: остаётся по центру, но выезжает сбоку к центру */
     .js-anim .reveal-text {
       opacity: 0;
       transition:
-        opacity 1.1s ease,
-        transform 1.3s cubic-bezier(.22, .8, .3, 1);
+        opacity 1.15s ease,
+        transform 1.35s cubic-bezier(.22, .8, .3, 1);
+      will-change: transform, opacity;
     }
-    .js-anim .reveal-text.from-left {
-      transform: translateX(-54px);
-    }
-    .js-anim .reveal-text.from-right {
-      transform: translateX(54px);
-    }
+    .js-anim .reveal-text.from-left  { transform: translateX(calc(-1 * var(--slide))); }
+    .js-anim .reveal-text.from-right { transform: translateX(var(--slide)); }
     .js-anim .reveal-text.is-visible {
       opacity: 1;
       transform: translateX(0);
@@ -610,11 +602,9 @@
     }
 
     @media (max-width: 600px) {
+      :root { --slide: 40px; }
       .page { padding: 0 12px 36px; }
       .hero { padding-top: 28px; }
-
-      .js-anim .reveal-text.from-left { transform: translateX(-36px); }
-      .js-anim .reveal-text.from-right { transform: translateX(36px); }
 
       .image-wrap,
       .calendar-wrap,
@@ -650,7 +640,6 @@
       .js-anim .reveal-photo {
         opacity: 1 !important;
         transform: none !important;
-        clip-path: none !important;
         transition: none !important;
       }
     }
@@ -801,7 +790,7 @@
         return;
       }
 
-      /* Чередуем стороны появления текста: слева / справа */
+      /* Чередуем стороны: 1-й слева, 2-й справа и т.д. */
       textEls.forEach(function (el, i) {
         el.classList.add(i % 2 === 0 ? 'from-left' : 'from-right');
       });
