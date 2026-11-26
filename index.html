@@ -40,12 +40,9 @@
       font-weight: 500;
       overflow-x: hidden;
 
-      /* ── фон: мягкий голубой → зелёный градиент + бумажная текстура ── */
       background-color: #d4ebe5;
       background-image:
-        /* волокна бумаги */
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008 0.09' numOctaves='4' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23f)' opacity='0.4'/%3E%3C/svg%3E"),
-        /* мягкие световые пятна */
         radial-gradient(130% 100% at 12% -10%, #eaf8ff 0%, rgba(234, 248, 255, 0) 60%),
         radial-gradient(110% 85% at 88% 0%, #eefaf3 0%, rgba(238, 250, 243, 0) 55%),
         radial-gradient(120% 90% at 50% 108%, #a3d6be 0%, rgba(163, 214, 190, 0) 66%),
@@ -54,7 +51,6 @@
         radial-gradient(circle at 38% 74%, rgba(80, 140, 110, .13) 0%, rgba(80, 140, 110, 0) 28%),
         radial-gradient(circle at 90% 62%, rgba(18, 76, 108, .09) 0%, rgba(18, 76, 108, 0) 22%),
         radial-gradient(circle at 6% 88%, rgba(255, 255, 255, .22) 0%, rgba(255, 255, 255, 0) 26%),
-        /* базовый градиент: голубой → зелёный → голубой */
         linear-gradient(160deg, #d9f0f8 0%, #c9e8dd 38%, #b8ddd0 68%, #c6e8ef 100%);
       background-blend-mode:
         soft-light,
@@ -69,7 +65,6 @@
                          no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
     }
 
-    /* два слоя текстуры поверх фона */
     body::before,
     body::after {
       content: "";
@@ -97,13 +92,33 @@
       position: relative;
       z-index: 1;
       width: min(100%, 1180px);
-      min-height: 100vh;
       margin: 0 auto;
-      padding: 36px 20px 48px;
+      padding: 0 20px 48px;
       display: flex;
       flex-direction: column;
       align-items: center;
       background: transparent;
+    }
+
+    /* ── HERO: первый экран, фото прижато к низу ── */
+    .hero {
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 36px 0 0;
+      box-sizing: border-box;
+    }
+
+    .hero-top {
+      text-align: center;
+    }
+
+    .hero .image-wrap {
+      margin: 0;
     }
 
     /* ── HERO ── */
@@ -292,7 +307,8 @@
       display: block;
       width: 100%;
       height: auto;
-      margin-top: -4%;
+      margin-top: -5%;
+      margin-bottom: -5%;
     }
 
     .dresscode-image,
@@ -437,7 +453,7 @@
 
     .rsvp-submit:active { background: rgba(255, 255, 255, .45); }
 
-    /* ── КОНТАКТЫ: горизонтальный отрывной пунктир + увеличенное фото ── */
+    /* ── КОНТАКТЫ ── */
     .contacts {
       position: relative;
       width: min(100%, 1100px);
@@ -558,23 +574,25 @@
       filter: blur(0);
     }
 
-    /* текст: «выезжает» из-под маски снизу вверх + blur→clear */
+    /* текст: «выезжает» сбоку, чередуя стороны */
     .js-anim .reveal-text {
       opacity: 0;
-      transform: translateY(18px);
-      clip-path: inset(0 0 100% 0);
       transition:
-        opacity .9s ease,
-        transform 1.15s cubic-bezier(.22, .8, .3, 1),
-        clip-path 1.2s cubic-bezier(.22, .8, .3, 1);
+        opacity 1.1s ease,
+        transform 1.3s cubic-bezier(.22, .8, .3, 1);
+    }
+    .js-anim .reveal-text.from-left {
+      transform: translateX(-54px);
+    }
+    .js-anim .reveal-text.from-right {
+      transform: translateX(54px);
     }
     .js-anim .reveal-text.is-visible {
       opacity: 1;
-      transform: translateY(0);
-      clip-path: inset(0 0 -2px 0);
+      transform: translateX(0);
     }
 
-    /* мягкое появление блока (для контактов) */
+    /* мягкое появление блока */
     .js-anim .reveal {
       opacity: 0;
       transform: translateY(22px);
@@ -592,7 +610,12 @@
     }
 
     @media (max-width: 600px) {
-      .page { padding: 28px 12px 36px; }
+      .page { padding: 0 12px 36px; }
+      .hero { padding-top: 28px; }
+
+      .js-anim .reveal-text.from-left { transform: translateX(-36px); }
+      .js-anim .reveal-text.from-right { transform: translateX(36px); }
+
       .image-wrap,
       .calendar-wrap,
       .program-wrap,
@@ -635,11 +658,16 @@
 </head>
 <body>
   <main class="page">
-    <h1 class="title reveal-text">Wedding Day</h1>
-    <p class="names reveal-text">Артём <span class="ampersand">&amp;</span> Ольга</p>
 
-    <div class="image-wrap reveal-photo">
-      <img class="couple-image" src="Помолвка в стиле Sims 4.png" alt="Артём и Ольга — помолвка в стиле The Sims 4">
+    <!-- HERO: первый экран, фото прижато к низу -->
+    <div class="hero">
+      <div class="hero-top">
+        <h1 class="title reveal-text">Wedding Day</h1>
+        <p class="names reveal-text">Артём <span class="ampersand">&amp;</span> Ольга</p>
+      </div>
+      <div class="image-wrap reveal-photo">
+        <img class="couple-image" src="Помолвка в стиле Sims 4.png" alt="Артём и Ольга — помолвка в стиле The Sims 4">
+      </div>
     </div>
 
     <section class="invitation reveal-text">
@@ -766,11 +794,17 @@
     (function () {
       var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var items = document.querySelectorAll('.reveal, .reveal-text, .reveal-photo');
+      var textEls = document.querySelectorAll('.reveal-text');
 
       if (prefersReduced || !('IntersectionObserver' in window)) {
         items.forEach(function (el) { el.classList.add('is-visible'); });
         return;
       }
+
+      /* Чередуем стороны появления текста: слева / справа */
+      textEls.forEach(function (el, i) {
+        el.classList.add(i % 2 === 0 ? 'from-left' : 'from-right');
+      });
 
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
